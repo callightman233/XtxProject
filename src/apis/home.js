@@ -1,14 +1,21 @@
-import  httpInstance  from '@/utils/http'
+import httpInstance from '@/utils/http'
 
 // 获取banner
-export function getBannerAPI (){
+export function getBannerAPI() {
   return httpInstance({
-    url:'/home/banner'
+    url: '/home/banner'
   })
 }
 
 export const findNewAPI = () => {
   return httpInstance({
-    url:'/home/new'
+    url: '/home/new'
+  })
+}
+
+
+export const getHotAPI = () => {
+  return httpInstance({
+    url: 'home/hot'
   })
 }
