@@ -8,7 +8,7 @@ export const lazyPlugin = {
             mounted(el, binding) {
                 // el:指令绑定的元素 img
                 // binding: 最常用绑定value, 表达式的值, 图片url
-                console.log(el, binding.value)
+                // console.log(el, binding.value)
                 const { stop } = useIntersectionObserver(
                     el,
                     ([{ isIntersecting }]) => {
