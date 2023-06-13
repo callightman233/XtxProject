@@ -1,33 +1,13 @@
 <script setup>
-import { getCategoryAPI } from '@/apis/category'
-import { ref, onMounted, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
-import { getBannerAPI } from '@/apis/home'
 import GoodsItem from '../Home/components/GoodsItem.vue'
+import { useBanner } from './composables/useBanner'
+import { useCategory } from './composables/useCategory'
 
-const categoryData = ref({})
-const route = useRoute()
-const getCategory = async () => {
-    const res = await getCategoryAPI(route.params.id)
-    categoryData.value = res.result
-}
+const { bannerList } = useBanner()
 
-// 目标路由变化后，可以把分类接口重新发送
-watchEffect(() => {
-    getCategory()
-})
+const { categoryData } = useCategory()
 
-//获取轮播图
-const bannerList = ref([])
-const getBanner = async () => {
-    const res = await getBannerAPI({
-        distributionSite: '2'
-    })
-    bannerList.value = res.result
-}
 
-onMounted(() => getBanner())
-onMounted(() => getCategory())
 </script>
 
 <template>
