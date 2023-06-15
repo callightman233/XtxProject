@@ -17,7 +17,7 @@ const { categoryData } = useCategory()
             <div class="bread-container">
                 <el-breadcrumb separator=">">
                     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item>居家</el-breadcrumb-item>
+                    <el-breadcrumb-item>{{ categoryData.name }}</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
             <!-- 轮播图 -->
