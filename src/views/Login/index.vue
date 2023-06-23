@@ -1,6 +1,10 @@
 <script setup>
 // 表单校验(账户名+密码)
 import { ref } from 'vue'
+import { loginAPI } from '@/apis/uesr'
+import 'element-plus/theme-chalk/el-message.css'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 // 1.准备表单对象
 const form = ref({
@@ -36,16 +40,24 @@ const rules = ref({
 
 // 3.获取form实例统一验证
 const formRef = ref(null)
-const doLogin = () => [
-    formRef.value.validate((valid) => {
+const router = useRouter()
+const doLogin = () => {
+    const { account, password } = form.value
+    formRef.value.validate(async (valid) => {
         // valid: 所有表单都通过校验  才为true
         console.log(valid)
-        if(valid){
+        if (valid) {
             //TODO LOGIN
-
+            const res = await loginAPI({ account, password })
+            console.log(res)
+            // 1.提示用户
+            ElMessage({ type: 'success', message: '登录成功' })
+            // 2.跳转首页
+            router.replace({path:'/'})
         }
     })
-]
+}
+
 </script>
 
 
