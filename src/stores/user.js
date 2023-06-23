@@ -12,9 +12,14 @@ export const useUserStore = defineStore('user', () => {
         userInfo.value = res.result
     }
 
+    // 用户数据删除
+    const clearUserInfo = () => {
+        userInfo.value = {}
+    }
     // 3.以对象的格式把state和action return
     return {
         userInfo,
-        getUserInfo
+        getUserInfo,
+        clearUserInfo
     }
 }, { persist: true, })
