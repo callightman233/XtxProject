@@ -7,7 +7,7 @@ export const useCartStore = defineStore('cart', () => {
         //已添加过 count+1
         const item = cartList.value.find((item) => goods.skuId === item.skuId)
         if (item) {
-            item.count++
+            item.count += goods.count
         }
         //未添加过，push
         else {
