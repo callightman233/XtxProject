@@ -7,6 +7,10 @@ const singleCheck = (i, selectd) => {
     console.log(i, selectd)
     cartStore.singleCheck(i.skuId, selectd)
 }
+
+const allCheck = (selectd) => {
+    cartStore.allCheck(selectd)
+}
 </script>
 
 <template>
@@ -17,7 +21,7 @@ const singleCheck = (i, selectd) => {
                     <thead>
                         <tr>
                             <th width="120">
-                                <el-checkbox />
+                                <el-checkbox :model-value="cartStore.isAll" @change="allCheck" />
                             </th>
                             <th width="400">商品信息</th>
                             <th width="220">单价</th>
