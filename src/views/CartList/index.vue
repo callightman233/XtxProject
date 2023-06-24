@@ -1,6 +1,12 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore'
 const cartStore = useCartStore()
+
+//单选回调
+const singleCheck = (i, selectd) => {
+    console.log(i, selectd)
+    cartStore.singleCheck(i.skuId, selectd)
+}
 </script>
 
 <template>
@@ -24,7 +30,8 @@ const cartStore = useCartStore()
                     <tbody>
                         <tr v-for="i in cartStore.cartList" :key="i.id">
                             <td>
-                                <el-checkbox />
+                                <!-- 单选框 -->
+                                <el-checkbox :model-value="i.selected" @change="(selectd) => singleCheck(i, selectd)" />
                             </td>
                             <td>
                                 <div class="goods">
@@ -48,7 +55,7 @@ const cartStore = useCartStore()
                             <td class="tc">
                                 <p>
                                     <el-popconfirm title="确认删除吗?" confirm-button-text="确认" cancel-button-text="取消"
-                                        @confirm="delCart(i)">
+                                        @confirm="cartStore.delCart(i)">
                                         <template #reference>
                                             <a href="javascript:;">删除</a>
                                         </template>
@@ -72,8 +79,8 @@ const cartStore = useCartStore()
             <!-- 操作栏 -->
             <div class="action">
                 <div class="batch">
-                    共 10 件商品，已选择 2 件，商品合计：
-                    <span class="red">¥ 200.00 </span>
+                    共 {{ cartStore.allCount }} 件商品，已选择 2 件，商品合计：
+                    <span class="red">¥ {{ cartStore.allPrice.toFixed(2) }} </span>
                 </div>
                 <div class="total">
                     <el-button size="large" type="primary">下单结算</el-button>
