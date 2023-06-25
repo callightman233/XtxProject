@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useUserStore } from './user'
 import { insertCartAPI, findNewCartListAPI, delCartAPI } from '@/apis/cart'
 
+
 export const useCartStore = defineStore('cart', () => {
     const userStore = useUserStore()
     const isLogin = computed(() => userStore.userInfo.token)
@@ -85,6 +86,7 @@ export const useCartStore = defineStore('cart', () => {
         delCart,
         clearCart,
         singleCheck,
-        allCheck
+        allCheck,
+        updateNewList
     }
 }, { persist: true, })
