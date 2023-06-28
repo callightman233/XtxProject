@@ -1,7 +1,7 @@
 // 管理用户数据相关
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { loginAPI } from '@/apis/uesr'
+import { loginAPI } from '@/apis/user'
 import { useCartStore } from './cartStore'
 import { mergeCartAPI } from '@/apis/cart'
 
