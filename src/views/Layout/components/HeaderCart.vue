@@ -1,19 +1,19 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore'
-
 const cartStore = useCartStore()
+
 </script>
 
 <template>
     <div class="cart">
-        <a class="curr" href="javascript:;">
+        <a class="curr" href="javascript:;" @click="$router.push('/carlist')">
             <i class="iconfont icon-cart"></i><em>{{ cartStore.cartList.length }}</em>
         </a>
         <div class="layer">
             <div class="list">
-                <div class="item" v-for="i in cartStore.cartList" :key="i">
+                <div class="item" v-for=" i  in  cartStore.cartList " :key=" i ">
                     <RouterLink to="">
-                        <img :src="i.picture" alt="" />
+                        <img :src=" i.picture " alt="" />
                         <div class="center">
                             <p class="name ellipsis-2">
                                 {{ i.name }}
